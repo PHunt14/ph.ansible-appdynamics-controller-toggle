@@ -1,0 +1,27 @@
+---
+# tasks file for ph.AppDynamicsControllerToggle
+
+- name: login to the Enterprise Console
+  shell: "{{ enterpriseConsoleHome }}bin/platform-admin.sh login -u {{ enterpriseConsoleAdminUser }} -p {{ enterpriseConsoleAdminPassword }}"
+  no_log: true
+  become: false
+  
+- name: start the Controller database
+  shell: "{{ enterpriseConsoleHome }}bin/platform-admin.sh start-controller-db"
+  become: false
+  when: startController
+  
+- name: start the Controller appserver
+  shell: "{{ enterpriseConsoleHome }}bin/platform-admin.sh start-controller-appserver"
+  become: false
+  when: startController
+  
+- name: stop the Controller appserver
+  shell: "{{ enterpriseConsoleHome }}bin/platform-admin.sh stop-controller-appserver"
+  become: false
+  when: not startController
+  
+- name: start the Controller database
+  shell: "{{ enterpriseConsoleHome }}bin/platform-admin.sh stop-controller-db"
+  become: false
+  when: not startController

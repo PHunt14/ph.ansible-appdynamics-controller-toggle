@@ -1,0 +1,8 @@
+---
+# defaults file for ph.AppDynamicsControllerToggle
+
+startController: true
+
+enterpriseConsoleHome: /opt/appdynamics/platform/
+enterpriseConsoleAdminUser: admin
+enterpriseConsoleAdminPassword: changeit!
